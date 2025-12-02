@@ -229,153 +229,36 @@ ban_cnt == MAX_BANS</label>
 		</transition>
 	</template>
 	<template>
-		<name>Attaquant</name>
-		<declaration>clock c_att_delay; 
-int scan_iter = 0; 
-
-
-</declaration>
-		<location id="id32" x="-246" y="-306">
-			<name x="-256" y="-340">Initial</name>
-		</location>
-		<location id="id33" x="51" y="-306">
-			<name x="-17" y="-340">Scanning</name>
-		</location>
-		<location id="id34" x="289" y="-306">
-			<name x="297" y="-348">Wait_scan</name>
-		</location>
-		<location id="id35" x="425" y="-204">
-			<name x="451" y="-212">Trying_login</name>
-		</location>
-		<location id="id36" x="272" y="51">
-			<name x="221" y="25">Delay</name>
-		</location>
-		<location id="id37" x="671" y="136">
-			<name x="569" y="153">Attack_Admin</name>
-		</location>
-		<location id="id38" x="-153" y="136">
-			<name x="-229" y="127">Blocked</name>
-		</location>
-		<init ref="id32"/>
-		<transition id="id39">
-			<source ref="id35"/>
-			<target ref="id37"/>
-		</transition>
-		<transition id="id40">
-			<source ref="id38"/>
-			<target ref="id32"/>
-			<label kind="guard" x="-314" y="-144">!ip_blocked</label>
-			<label kind="assignment" x="-238" y="-76">c_att_delay = 0,
-scan_iter = 0,
-log_cnt = 0</label>
-			<nail x="-170" y="110"/>
-			<nail x="-246" y="110"/>
-		</transition>
-		<transition id="id41">
-			<source ref="id36"/>
-			<target ref="id38"/>
-			<label kind="guard" x="8" y="59">ip_blocked</label>
-		</transition>
-		<transition id="id42">
-			<source ref="id36"/>
-			<target ref="id35"/>
-			<label kind="guard" x="323" y="59">!ip_blocked &amp;&amp; 
-c_att_delay &gt;= 1</label>
-			<nail x="459" y="51"/>
-		</transition>
-		<transition id="id43">
-			<source ref="id35"/>
-			<target ref="id38"/>
-			<label kind="guard" x="8" y="-136">ip_blocked</label>
-		</transition>
-		<transition id="id44">
-			<source ref="id34"/>
-			<target ref="id38"/>
-			<label kind="guard" x="-136" y="-136">ip_blocked</label>
-		</transition>
-		<transition id="id45">
-			<source ref="id33"/>
-			<target ref="id38"/>
-			<label kind="guard" x="85" y="-76">ip_blocked</label>
-		</transition>
-		<transition id="id46">
-			<source ref="id37"/>
-			<target ref="id38"/>
-			<label kind="guard" x="-34" y="246">ip_blocked</label>
-		</transition>
-		<transition id="id47">
-			<source ref="id35"/>
-			<target ref="id36"/>
-			<label kind="guard" x="263" y="-76">!ip_blocked &amp;&amp; 
-log_cnt &lt; MAX_FAIL</label>
-			<label kind="synchronisation" x="272" y="-102">login_fail!</label>
-			<label kind="assignment" x="161" y="-17">log_cnt++, 
-c_att_delay := 0</label>
-		</transition>
-		<transition id="id48">
-			<source ref="id34"/>
-			<target ref="id35"/>
-			<label kind="guard" x="433" y="-331">!ip_blocked &amp;&amp;
-c_att_delay &gt;= 1</label>
-			<label kind="assignment" x="450" y="-246">c_att_delay:=0</label>
-			<nail x="425" y="-306"/>
-		</transition>
-		<transition id="id49">
-			<source ref="id34"/>
-			<target ref="id33"/>
-			<label kind="guard" x="85" y="-416">!ip_blocked &amp;&amp; 
-scan_iter &lt; MAX_PORTS &amp;&amp;
-c_att_delay &gt;=1</label>
-			<label kind="synchronisation" x="119" y="-450">scan_event!</label>
-			<label kind="assignment" x="-76" y="-399">c_att_delay:=0</label>
-			<nail x="289" y="-425"/>
-			<nail x="51" y="-425"/>
-		</transition>
-		<transition id="id50">
-			<source ref="id33"/>
-			<target ref="id34"/>
-			<label kind="guard" x="119" y="-331">!ip_blocked</label>
-			<label kind="assignment" x="161" y="-297">scan_iter++</label>
-		</transition>
-		<transition id="id51">
-			<source ref="id32"/>
-			<target ref="id33"/>
-			<label kind="guard" x="-161" y="-357">!ip_blocked</label>
-			<label kind="synchronisation" x="-161" y="-331">scan_event!</label>
-			<label kind="assignment" x="-93" y="-297">c_att_delay:=0</label>
-		</transition>
-	</template>
-	<template>
 		<name>SOC_Login</name>
 		<declaration>clock x;      // Horloge locale
 </declaration>
-		<location id="id52" x="-255" y="34">
+		<location id="id32" x="-255" y="34">
 			<name x="-272" y="1">Repos</name>
 		</location>
-		<location id="id53" x="187" y="34">
+		<location id="id33" x="187" y="34">
 			<name x="187" y="0">Surveillance</name>
 			<label kind="invariant" x="127" y="42">x &lt;= TIME_LOGIN</label>
 		</location>
-		<location id="id54" x="161" y="-144">
+		<location id="id34" x="161" y="-144">
 			<name x="151" y="-178">Verif_Admin</name>
 			<committed/>
 		</location>
-		<location id="id55" x="-153" y="-144">
+		<location id="id35" x="-153" y="-144">
 			<name x="-163" y="-178">Ban</name>
 			<committed/>
 		</location>
-		<init ref="id52"/>
-		<transition id="id56">
-			<source ref="id53"/>
-			<target ref="id52"/>
+		<init ref="id32"/>
+		<transition id="id36">
+			<source ref="id33"/>
+			<target ref="id32"/>
 			<label kind="synchronisation" x="8" y="161">login_ok?</label>
 			<label kind="assignment" x="-153" y="161">x:=0, log_cnt:=0</label>
 			<nail x="136" y="161"/>
 			<nail x="-170" y="161"/>
 		</transition>
-		<transition id="id57">
-			<source ref="id53"/>
-			<target ref="id53"/>
+		<transition id="id37">
+			<source ref="id33"/>
+			<target ref="id33"/>
 			<label kind="guard" x="357" y="-25">x &lt; TIME_LOGIN &amp;&amp; log_cnt &lt; MAX_FAIL</label>
 			<label kind="synchronisation" x="231" y="-76">login_fail?</label>
 			<label kind="assignment" x="357" y="-8">log_cnt++</label>
@@ -383,39 +266,39 @@ c_att_delay &gt;=1</label>
 			<nail x="357" y="-59"/>
 			<nail x="357" y="34"/>
 		</transition>
-		<transition id="id58">
-			<source ref="id55"/>
-			<target ref="id52"/>
+		<transition id="id38">
+			<source ref="id35"/>
+			<target ref="id32"/>
 			<label kind="synchronisation" x="-297" y="-93">block_cmd!</label>
 			<label kind="assignment" x="-331" y="-76">x:=0, log_cnt:=0</label>
 		</transition>
-		<transition id="id59">
-			<source ref="id54"/>
-			<target ref="id52"/>
+		<transition id="id39">
+			<source ref="id34"/>
+			<target ref="id32"/>
 			<label kind="guard" x="-85" y="-51">target_is_admin == false</label>
 			<label kind="assignment" x="-25" y="-76">x:=0, log_cnt:=0</label>
 		</transition>
-		<transition id="id60">
-			<source ref="id54"/>
-			<target ref="id55"/>
+		<transition id="id40">
+			<source ref="id34"/>
+			<target ref="id35"/>
 			<label kind="guard" x="-93" y="-170">target_is_admin == true</label>
 		</transition>
-		<transition id="id61">
-			<source ref="id53"/>
-			<target ref="id54"/>
+		<transition id="id41">
+			<source ref="id33"/>
+			<target ref="id34"/>
 			<label kind="guard" x="170" y="-110">log_cnt == MAX_FAIL</label>
 		</transition>
-		<transition id="id62">
-			<source ref="id53"/>
-			<target ref="id52"/>
+		<transition id="id42">
+			<source ref="id33"/>
+			<target ref="id32"/>
 			<label kind="guard" x="0" y="93">x == TIME_LOGIN &amp;&amp; log_cnt &lt; MAX_FAIL</label>
 			<label kind="assignment" x="-153" y="93">x:=0, log_cnt:=0</label>
 			<nail x="102" y="93"/>
 			<nail x="-170" y="93"/>
 		</transition>
-		<transition id="id63">
-			<source ref="id52"/>
-			<target ref="id53"/>
+		<transition id="id43">
+			<source ref="id32"/>
+			<target ref="id33"/>
 			<label kind="synchronisation" x="-85" y="8">login_fail?</label>
 			<label kind="assignment" x="-110" y="34">x:=0, log_cnt:=1</label>
 		</transition>
@@ -440,12 +323,6 @@ system main_attacker, firewall, soc_login, soc_scan;</system>
 			</result>
 		</query>
 		<query>
-			<formula>A[] (firewall.Bloque_Temp imply not (soc_login.Surveillance or soc_scan.Monitoring))</formula>
-			<comment/>
-			<result outcome="failure" type="quality" timestamp="2025-11-30 11:19:37 +0100">
-			</result>
-		</query>
-		<query>
 			<formula>firewall.Bloque_Temp --&gt; soc_login.Repos</formula>
 			<comment/>
 			<result outcome="success" type="quality" timestamp="2025-11-30 11:19:27 +0100">
@@ -458,12 +335,6 @@ system main_attacker, firewall, soc_login, soc_scan;</system>
 			</result>
 		</query>
 		<query>
-			<formula>firewall.Bloque_Temp --&gt; main_attacker.Blocked</formula>
-			<comment/>
-			<result outcome="failure" type="quality" timestamp="2025-11-30 11:42:48 +0100">
-			</result>
-		</query>
-		<query>
 			<formula>soc_login.Ban --&gt; firewall.Bloque_Temp</formula>
 			<comment/>
 			<result outcome="success" type="quality" timestamp="2025-11-30 11:23:44 +0100">
@@ -473,14 +344,6 @@ system main_attacker, firewall, soc_login, soc_scan;</system>
 			<formula>firewall.ban_cnt == 3 --&gt; firewall.Bloque_Def</formula>
 			<comment/>
 			<result outcome="success" type="quality" timestamp="2025-11-30 11:23:54 +0100">
-			</result>
-		</query>
-		<query>
-			<formula>soc_scan.Monitoring &amp;&amp; soc_scan.port_cnt == MAX_PORTS &amp;&amp; soc_scan.y &lt;= TIME_SCAN
-  --&gt; soc_scan.ban
-</formula>
-			<comment/>
-			<result outcome="failure" type="quality" timestamp="2025-11-30 11:43:28 +0100">
 			</result>
 		</query>
 		<query>
@@ -526,12 +389,6 @@ system main_attacker, firewall, soc_login, soc_scan;</system>
 </formula>
 			<comment/>
 			<result outcome="success" type="quality" timestamp="2025-11-30 11:44:25 +0100">
-			</result>
-		</query>
-		<query>
-			<formula>firewall.Bloque_Temp --&gt; firewall.Passant</formula>
-			<comment>Cette propriété est fausse et c'est normal! Car si l'attaquant récidive trop vite, on peut passer de Bloque_Temp a Bloque_Def sans repasser par Passant (ou y rester coincé). C'est la preuve que notre système de bannissement définitif est prioritaire sur le déblocage</comment>
-			<result outcome="failure" type="quality" timestamp="2025-11-30 11:44:58 +0100">
 			</result>
 		</query>
 	</queries>
